@@ -94,15 +94,17 @@ const TwoPhaseVerticalSolution:React.FC<Props> = ({inputData,onHighlightChange})
 
     const selectedImage = getImage(inputData.formInputs.Sg.toString());
     useEffect(() => {
-        const highlightedRows = rows.filter(({ d, SRValue }) => d > dmin && SRValue >= 3 && SRValue <= 4);
-        onHighlightChange(highlightedRows[0]);
+
         const loadData = async () => {
             await ZFactorCalculator.loadSPGRData('./spgrs.json'); 
             setZFactor(ZFactorCalculator.calculateZFactor(inputData.formInputs.To - 459.67, inputData.formInputs.Sg, inputData.formInputs.Po) as number);
             console.log(zFactor);
         };
-
         loadData();
+
+        const highlightedRows = rows.filter(({ d, SRValue }) => d > dmin && SRValue >= 3 && SRValue <= 4);
+        onHighlightChange(highlightedRows[0]);
+
     }, [inputData]);
 
     const latex0_1 = `$$Z \\approx ${zFactor}$$`;

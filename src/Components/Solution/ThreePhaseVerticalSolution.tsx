@@ -90,8 +90,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
     const selectedImage = getImage(inputData.formInputs.Sg.toString());
 
     useEffect(() => {
-        const highlightedRows = rows.filter(({ d, SR }) => SR >= 1.5 && SR <= 3 && d >= dmin);
-        onHighlightChange(highlightedRows[0]);
+
         const loadData = async () => {
             await ZFactorCalculator.loadSPGRData('./spgrs.json'); 
             setZFactor(ZFactorCalculator.calculateZFactor(inputData.formInputs.To - 459.67, inputData.formInputs.Sg, inputData.formInputs.Po) as number);
@@ -99,6 +98,9 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
         };
 
         loadData();
+
+        const highlightedRows = rows.filter(({ d, SR }) => SR >= 1.5 && SR <= 3 && d >= dmin);
+        onHighlightChange(highlightedRows[0]);
     }, [inputData]);
 
     const latex0_1 = `$$Z \\approx ${zFactor}$$`;

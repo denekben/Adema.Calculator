@@ -125,8 +125,7 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
     const selectedImage = getImage(inputData.formInputs.Sg.toString());
 
     useEffect(() => {
-        const highlightedRows = rows.filter(({ SR }) => SR >= 3 && SR <= 4);
-        onHighlightChange(highlightedRows[0]);
+
         const loadData = async () => {
             await ZFactorCalculator.loadSPGRData('./spgrs.json'); 
             setZFactor(ZFactorCalculator.calculateZFactor(inputData.formInputs.To - 459.67, inputData.formInputs.Sg, inputData.formInputs.Po) as number);
@@ -134,6 +133,9 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
         };
 
         loadData();
+
+        const highlightedRows = rows.filter(({ SR }) => SR >= 3 && SR <= 4);
+        onHighlightChange(highlightedRows[0]);
     }, [inputData]);
 
     return(
