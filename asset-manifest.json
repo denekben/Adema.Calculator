@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/separator-calculator/static/css/main.3d707378.css",
-    "main.js": "/separator-calculator/static/js/main.8076be1c.js",
+    "main.js": "/separator-calculator/static/js/main.4e570efb.js",
     "static/js/453.4218e8e0.chunk.js": "/separator-calculator/static/js/453.4218e8e0.chunk.js",
     "static/media/0.9.png": "/separator-calculator/static/media/0.9.acaca23a16acf543a425.png",
     "static/media/0.8.png": "/separator-calculator/static/media/0.8.97ff9367f145d5ab914f.png",
@@ -12,11 +12,11 @@
     "static/media/image.png": "/separator-calculator/static/media/image.7008ece328dc301ed15a.png",
     "index.html": "/separator-calculator/index.html",
     "main.3d707378.css.map": "/separator-calculator/static/css/main.3d707378.css.map",
-    "main.8076be1c.js.map": "/separator-calculator/static/js/main.8076be1c.js.map",
+    "main.4e570efb.js.map": "/separator-calculator/static/js/main.4e570efb.js.map",
     "453.4218e8e0.chunk.js.map": "/separator-calculator/static/js/453.4218e8e0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d707378.css",
-    "static/js/main.8076be1c.js"
+    "static/js/main.4e570efb.js"
   ]
 }
