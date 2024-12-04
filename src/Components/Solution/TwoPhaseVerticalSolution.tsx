@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Latex from 'react-latex';
 import { Calculation, ZFactorCalculator } from '../../Services/CalculationService';
 import { DataForTwoPhaseCalculation } from '../Input/TwoPhaseVerticalInputPlate';
+
 import image1 from './Z/0.55.png';
 import image2 from './Z/0.6.png';
 import image3 from './Z/0.65.png';
@@ -34,7 +35,7 @@ export interface TwoPhaseTableRow {
 }
 
 const TwoPhaseVerticalSolution:React.FC<Props> = ({inputData,onHighlightChange}) => {
-    const [zFactor, setZFactor] = useState<number>(0);
+    const [zFactor, setZFactor] = useState<number>(1);
     const SG = (Calculation.SG(inputData.formInputs.Sgo) as number);
     const pl = Calculation.pl(SG as number) as number;
     const pg = Calculation.pg(inputData.formInputs.Sg, inputData.formInputs.Po, inputData.formInputs.To, zFactor as number) as number;
@@ -94,14 +95,13 @@ const TwoPhaseVerticalSolution:React.FC<Props> = ({inputData,onHighlightChange})
 
     const selectedImage = getImage(inputData.formInputs.Sg.toString());
     useEffect(() => {
-
         const loadData = async () => {
             await ZFactorCalculator.loadSPGRData('./spgrs.json'); 
             setZFactor(ZFactorCalculator.calculateZFactor(inputData.formInputs.To - 459.67, inputData.formInputs.Sg, inputData.formInputs.Po) as number);
             console.log(zFactor);
         };
         loadData();
-
+        console.log("dmin",dmin);
         const highlightedRows = rows.filter(({ d, SRValue }) => d > dmin && SRValue >= 3 && SRValue <= 4);
         onHighlightChange(highlightedRows[0]);
 
