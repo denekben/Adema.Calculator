@@ -59,25 +59,25 @@ const ThreePhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selected
         <form onSubmit={handleSubmit(handleInput)}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
                 <div>
-                    <label className="block text-sm font-medium">Q<sub>g</sub> (gas flow rate) [MMscfd]</label>
+                    <label className="block text-sm font-medium">Q<sub>g</sub> (gas flow rate, <span className="text-amber-800">MMscfd</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("Qg")}/>
                     {errors.Qg ? <p className="text-red-500 text-xs">{errors.Qg.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">Q<sub>o</sub> (oil flow rate) [BOPD]</label>
+                    <label className="block text-sm font-medium">Q<sub>o</sub> (oil flow rate, <span className="text-amber-800">BOPD</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("Qo")}/>
                     {errors.Qo ? <p className="text-red-500 text-xs">{errors.Qo.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">Q<sub>w</sub> (water flow rate) [BWPD]</label>
+                    <label className="block text-sm font-medium">Q<sub>w</sub> (water flow rate, <span className="text-amber-800">BWPD</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("Qw")}/>
                     {errors.Qw ? <p className="text-red-500 text-xs">{errors.Qw.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">S<sub>go</sub> (oil specific gravity) [°API]</label>
+                    <label className="block text-sm font-medium">S<sub>go</sub> (oil specific gravity, <span className="text-amber-800">°API</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("Sgo")}/>
                     {errors.Sgo ? <p className="text-red-500 text-xs">{errors.Sgo.message}</p> : ""}
@@ -89,32 +89,32 @@ const ThreePhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selected
                     {errors.Sgw ? <p className="text-red-500 text-xs">{errors.Sgw.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">µ<sub>o</sub> (oil visconsity) [cp]</label>
+                    <label className="block text-sm font-medium">µ<sub>o</sub> (oil visconsity, <span className="text-amber-800">cp</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("muo")}/>
                     {errors.muo ? <p className="text-red-500 text-xs">{errors.muo.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">µ<sub>w</sub> (water visconsity) [cp]</label>
+                    <label className="block text-sm font-medium">µ<sub>w</sub> (water visconsity, <span className="text-amber-800">cp</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("muw")}/>
                     {errors.muw ? <p className="text-red-500 text-xs">{errors.muw.message}</p> : ""}
                 </div>
                 {/* Удаление капель */}
                 <div>
-                    <label className="block text-sm font-medium">d<sub>ml</sub> (droplet removal for liquid) [micron]</label>
+                    <label className="block text-sm font-medium">d<sub>ml</sub> (droplet removal for liquid, <span className="text-amber-800">micron</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("dropletLiquid")}/>
                     {errors.dropletLiquid ? <p className="text-red-500 text-xs">{errors.dropletLiquid.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">d<sub>mw</sub> (droplet removal for water) [micron]</label>
+                    <label className="block text-sm font-medium">d<sub>mw</sub> (droplet removal for water, <span className="text-amber-800">micron</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("dropletWater")}/>
                     {errors.dropletWater ? <p className="text-red-500 text-xs">{errors.dropletWater.message}</p> : ""}
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">d<sub>mo</sub> (droplet removal for oil) [micron]</label>
+                    <label className="block text-sm font-medium">d<sub>mo</sub> (droplet removal for oil, <span className="text-amber-800">micron</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("dropletOil")}/>
                     {errors.dropletOil ? <p className="text-red-500 text-xs">{errors.dropletOil.message}</p> : ""}
@@ -122,14 +122,14 @@ const ThreePhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selected
 
                 {/* Время удержания */}
                 <div>
-                    <label className="block text-sm font-medium">t<sub>ro</sub> (oil retention time) [min]</label>
+                    <label className="block text-sm font-medium">t<sub>ro</sub> (oil retention time, <span className="text-amber-800">min</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("tro")}/>
                     {errors.tro ? <p className="text-red-500 text-xs">{errors.tro.message}</p> : ""}
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium">t<sub>rw</sub> (water retention time) [min]</label>
+                    <label className="block text-sm font-medium">t<sub>rw</sub> (water retention time, <span className="text-amber-800">min</span>)</label>
                     <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                     {...register("trw")}/>
                     {errors.trw ? <p className="text-red-500 text-xs">{errors.trw.message}</p> : ""}
@@ -137,7 +137,7 @@ const ThreePhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selected
                 <>
                     {true ? (
                         <div>
-                            <label className="block text-sm font-medium">µ<sub>g</sub> (gas viscosity) [cp]</label>
+                            <label className="block text-sm font-medium">µ<sub>g</sub> (gas viscosity, <span className="text-amber-800">cp</span>)</label>
                             <input type="number"  step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                             {...register("mu")}/>
                             {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}

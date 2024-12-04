@@ -29,7 +29,7 @@ const ThreePhaseHorizontalSolution:React.FC<Props>  = ({inputData, onHighlightCh
     const d2Leff = Calculation.d2LiquidLeff2(inputData.formInputs.Qw, inputData.formInputs.trw, inputData.formInputs.Qo, inputData.formInputs.tro);
 
     const rows = tableData.map(d => {
-        const LeffL = (d2Leff as number) / d**2;
+        const LeffL = Number(((d2Leff as number) / d**2).toFixed(6)) as number;
         const LssL = Calculation.LiquidLss(LeffL as number) as number;
         const SR = Calculation.SR(LssL, d) as number;
 
