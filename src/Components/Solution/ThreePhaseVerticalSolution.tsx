@@ -93,7 +93,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
         const highlightedRows = rows.filter(({ d, SR }) => SR >= 1.5 && SR <= 3 && d >= dmin);
         onHighlightChange(highlightedRows[0]);
         const loadData = async () => {
-            await ZFactorCalculator.loadSPGRData('/spgrs.json'); 
+            await ZFactorCalculator.loadSPGRData('./spgrs.json'); 
             setZFactor(ZFactorCalculator.calculateZFactor(inputData.formInputs.To - 459.67, inputData.formInputs.Sg, inputData.formInputs.Po) as number);
             console.log(zFactor);
         };
@@ -241,7 +241,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
                             <Latex>{latex1_21}</Latex>
                         </div>
 
-                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> clarification, 1<sub>st</sub> iteration</h3>
+                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> approximation, 1<sub>st</sub> iteration</h3>
                         <div className=" mb-8 flex flex-col justify-center items-center bg-green-300 rounded-lg shadow-md w-full">
                             <div className='mb-4 mt-4'>
                                 <Latex>{`$$V_t=0.0119*[\\frac{(ρ_l-ρ_g)*d_m}{ρ_g * C_D}]^{1/2}$$`}</Latex>
@@ -272,7 +272,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
                             </div>
                         </div>
 
-                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> clarification, 2<sub>nd</sub> iteration</h3>
+                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> approximation, 2<sub>nd</sub> iteration</h3>
                         <div className=" mb-8 flex flex-col justify-center items-center bg-green-300 rounded-lg shadow-md w-full">
                             <div className='mb-4 mt-4'>
                                 <Latex>{`$$V_t=0.0119*[\\frac{(ρ_l-ρ_g)*d_m}{ρ_g * C_D}]^{1/2}$$`}</Latex>
@@ -303,7 +303,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
                             </div>
                         </div>
 
-                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> clarification, 3<sub>rd</sub> iteration</h3>
+                        <h3 className="text-xl font-semibold mb-4 text-left">C<sub>D</sub> approximation, 3<sub>rd</sub> iteration</h3>
                         <div className="flex flex-col mb-8 justify-center items-center bg-green-300 rounded-lg shadow-md w-full">
                             <div className='mb-4 mt-4'>
                                 <Latex>{`$$V_t=0.0119*[\\frac{(ρ_l-ρ_g)*d_m}{ρ_g * C_D}]^{1/2}$$`}</Latex>
