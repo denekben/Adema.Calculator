@@ -14,7 +14,7 @@ interface Props {
 
 const SolutionPlate: React.FC<Props> = ({ inputData, onHighlightChange }) => {
     return (
-        <div className="mb-4 p-6 bg-green-50 border border-gray-300 rounded-lg shadow-md max-w-5xl mx-auto overflow-auto max-h-[930px]">
+        <div className="p-6 bg-green-50 border border-gray-300 rounded-lg shadow-md max-w-5xl mx-auto">
             <h2 className="text-2xl font-semibold mb-4 flex justify-center">Solution</h2>
             {inputData?.selectedSeparator === "Two-phase vertical separator" && <TwoPhaseVerticalSolution inputData={inputData as DataForTwoPhaseCalculation} onHighlightChange={onHighlightChange}/>}
             {inputData?.selectedSeparator === "Two-phase horizontal separator" && <TwoPhaseHorizontalSolution inputData={inputData as DataForTwoPhaseCalculation} onHighlightChange={onHighlightChange}/>}

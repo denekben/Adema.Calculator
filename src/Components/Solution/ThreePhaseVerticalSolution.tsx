@@ -61,7 +61,7 @@ const ThreePhaseVerticalSolution:React.FC<Props>  = ({inputData,onHighlightChang
     const hohwd2 = Calculation.hohw(inputData.formInputs.tro, inputData.formInputs.Qo, inputData.formInputs.trw, inputData.formInputs.Qw) as number;
 
     const rows = tableData.map(d => {
-        const hohw = (hohwd2 as number) / d**2 as number;
+        const hohw = Number(((hohwd2 as number) / d**2 as number).toFixed(6)) as number;
         const Lss = Calculation.LssWithHohw(hohw, d) as number;
         const SR = Calculation.SR(Lss, d) as number;
 

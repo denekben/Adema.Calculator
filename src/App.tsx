@@ -42,13 +42,13 @@ function App() {
         Separator calculator <span className="text-base">by Kabakova Adema, Zeinullova Assem, Kabdulla Kamilla</span>
       </h1>
       <div className="flex flex-grow justify-center">
-        <div className="w-1/2 p-2">
+        <div className="w-1/2 p-2 overflow-auto h-[90vh]">
           <InputPlate onSeparatorChange={handleSeparatorChange} onInputSubmit={handleInputSubmit}/>
           <>{(inputData?.selectedSeparator != null && inputData?.formInputs != null) ? (
             <OutputPlate highlightedRows={highlightedRows} selectedSeparator={selectedSeparator}/>
           ): null}</>
         </div>
-        <div className="w-1/2 p-2">
+        <div className="w-1/2 p-2 overflow-auto h-[90vh]">
           {(inputData?.selectedSeparator != null && inputData?.formInputs != null) ? (
             <SolutionPlate inputData={inputData} onHighlightChange={handleHighlightedRowsChange}/>
           ) : null}

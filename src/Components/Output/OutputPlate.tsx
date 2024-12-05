@@ -10,7 +10,7 @@ interface Props{
 
 const OutputPlate: React.FC<Props> = ({highlightedRows, selectedSeparator}) => {
     return (
-        <div className="mb-4 p-6 bg-green-50 border border-gray-300 rounded-lg shadow-md max-w-5xl mx-auto overflow-auto max-h-[200px]">
+        <div className="p-6 bg-green-50 border border-gray-300 rounded-lg shadow-md max-w-5xl mx-auto">
             <h2 className="text-2xl font-semibold mb-4 flex justify-center">Output</h2>
             {highlightedRows ? (
                 <>
