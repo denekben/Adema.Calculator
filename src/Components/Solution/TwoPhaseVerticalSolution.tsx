@@ -431,7 +431,7 @@ const TwoPhaseVerticalSolution:React.FC<Props> = ({inputData,onHighlightChange})
                 </div>
             </div>
             <h3 className="text-xl font-semibold mb-4 text-center">Step 5. Table sizing constraintion</h3>
-            <table className="min-w-full bg-green-100 text-center border border-gray-300 rounded-lg overflow-hidden border-collapse">
+            <table className="min-w-full mb-8 bg-green-100 text-center border border-gray-300 rounded-lg overflow-hidden border-collapse">
                 <thead>
                     <tr>
                         <th className="border border-gray-300 px-4 py-2"><Latex>{`$$t_r\\ (min)$$`}</Latex></th>
