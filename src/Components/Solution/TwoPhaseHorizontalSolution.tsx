@@ -24,6 +24,15 @@ export interface TwoPhaseTableRow {
 
 const tableData = [10,16,18,20,24,30,36,42,48];
 
+const abcTableData = {
+    "C1": [8.976,1780.5,230],
+    "C2": [8.785,1569.5,234.2],
+    "C3": [8.726,1317.2,224],
+    "C4+": [8.45,1100,220],
+    "H2S": [7.948,1470.6,211],
+    "CO2": [7.92,1376,239]
+};
+
 const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChange}) => {
     const [zFactor, setZFactor] = useState<number>(0);
     const SG = Calculation.SG(inputData.formInputs.Sgo) as number;
@@ -56,6 +65,8 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
         inputData.formInputs.Po, pg as number, pl as number, CD4 as number, inputData.formInputs.dm) as number;
 
     const d2LiquidLeff1 = Calculation.d2LiquidLeff1(inputData.formInputs.tr, Ql as number) as number;
+
+    const C = Calculation.RtoC(inputData.formInputs.To) as number;
 
     const latex0_1 = `$$Z \\approx ${zFactor}$$`;
 
@@ -93,6 +104,41 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
     const latex3_4 = `$$d^{2}*L_{eff}=\\frac{t_r*Q_l}{0.7}$$`;
     const latex3_5 = `$$d^{2}*L_{eff}=\\frac{${inputData.formInputs.tr}*${Ql}}{0.7}$$`;
     const latex3_6 = `$$d^{2}*L_{eff}=${d2LiquidLeff1}$$`;
+
+    const latex4_1 = `$$P_{sat}=10^{A-\\frac{B}{C+T}}$$`;
+    const latex4_2 = `$$P_{sat}(C1)=10^{${abcTableData["C1"][0]}-\\frac{${abcTableData["C1"][1]}}{${abcTableData["C1"][2]}+${C}}}$$`;
+    const latex4_3 = `$$P_{sat}(C1)=${Calculation.Psat(abcTableData["C1"], C)}$$`;
+    const latex4_4 = `$$P_{sat}(C2)=10^{${abcTableData["C2"][0]}-\\frac{${abcTableData["C2"][1]}}{${abcTableData["C2"][2]}+${C}}}$$`;
+    const latex4_5 = `$$P_{sat}(C2)=${Calculation.Psat(abcTableData["C2"], C)}$$`;
+    const latex4_6 = `$$P_{sat}(C3)=10^{${abcTableData["C3"][0]}-\\frac{${abcTableData["C3"][1]}}{${abcTableData["C3"][2]}+${C}}}$$`;
+    const latex4_7 = `$$P_{sat}(C3)=${Calculation.Psat(abcTableData["C3"], C)}$$`;
+    const latex4_8 = `$$P_{sat}(C4+)=10^{${abcTableData["C4+"][0]}-\\frac{${abcTableData["C4+"][1]}}{${abcTableData["C4+"][2]}+${C}}}$$`;
+    const latex4_9 = `$$P_{sat}(C4+)=${Calculation.Psat(abcTableData["C4+"], C)}$$`;
+    const latex4_10 = `$$P_{sat}(H2S)=10^{${abcTableData["H2S"][0]}-\\frac{${abcTableData["H2S"][1]}}{${abcTableData["H2S"][2]}+${C}}}$$`;
+    const latex4_11 = `$$P_{sat}(H2S)=${Calculation.Psat(abcTableData["H2S"], C)}$$`;
+    const latex4_12 = `$$P_{sat}(CO2)=10^{${abcTableData["CO2"][0]}-\\frac{${abcTableData["CO2"][1]}}{${abcTableData["CO2"][2]}+${C}}}$$`;
+    const latex4_13 = `$$P_{sat}(CO2)=${Calculation.Psat(abcTableData["CO2"], C)}$$`;
+
+    const latex5_1 = `$$K_{i}=\\frac{P_{sat}}{P}$$`;
+    const latex5_2 = `$$K_{i}(C1)=\\frac{${Calculation.Psat(abcTableData["C1"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_3 = `$$K_{i}(C1)=${Calculation.Ki(Calculation.Psat(abcTableData["C1"], C) as number, inputData.formInputs.Po)}$$`;
+    const latex5_4 = `$$K_{i}(C2)=\\frac{${Calculation.Psat(abcTableData["C2"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_5 = `$$K_{i}(C2)=${Calculation.Ki(Calculation.Psat(abcTableData["C2"], C) as number, inputData.formInputs.Po)}$$`;
+    const latex5_6 = `$$K_{i}(C3)=\\frac{${Calculation.Psat(abcTableData["C3"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_7 = `$$K_{i}(C3)=${Calculation.Ki(Calculation.Psat(abcTableData["C3"], C) as number, inputData.formInputs.Po)}$$`;
+    const latex5_8 = `$$K_{i}(C4+)=\\frac{${Calculation.Psat(abcTableData["C4+"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_9 = `$$K_{i}(C4+)=${Calculation.Ki(Calculation.Psat(abcTableData["C4+"], C) as number, inputData.formInputs.Po)}$$`;
+    const latex5_10 = `$$K_{i}(H2S)=\\frac{${Calculation.Psat(abcTableData["H2S"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_11 = `$$K_{i}(H2S)=${Calculation.Ki(Calculation.Psat(abcTableData["H2S"], C) as number, inputData.formInputs.Po)}$$`;
+    const latex5_12 = `$$K_{i}(CO2)=\\frac{${Calculation.Psat(abcTableData["CO2"], C)}}{${inputData.formInputs.Po}}$$`;
+    const latex5_13 = `$$K_{i}(CO2)=${Calculation.Ki(Calculation.Psat(abcTableData["CO2"], C) as number, inputData.formInputs.Po)}$$`;
+
+    const latex6_1 = `$$Gas=F_{total\\ feed}*\\frac{V}{F}$$`;
+    const latex6_2 = `$$Gas=${1}*${0.121}$$`;
+    const latex6_3 = `$$Gas=${0.121}$$`;
+    const latex6_4 = `$$Oil=F_{total\\ feed}-Gas$$`;
+    const latex6_5 = `$$Oil=${1}-${0.121}$$`;
+    const latex6_6 = `$$Oil=${0.879}$$`;
 
     const rows = tableData.map(d => {
         const gasLeff = Calculation.GasLeff(dGasLeff as number, d) as number;
@@ -377,7 +423,7 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
             </div>
 
             <h3 className="text-xl font-semibold mb-4 text-center">Step 5. Table sizing constraintion</h3>
-            <table className="min-w-full bg-green-100 text-center border border-gray-300 rounded-lg overflow-hidden border-collapse">
+            <table className="min-w-full mb-8 bg-green-100 text-center border border-gray-300 rounded-lg overflow-hidden border-collapse">
                 <thead>
                     <tr>
                         <th className="border border-gray-300 px-4 py-2"><Latex>{`$$d\\ (ft)$$`}</Latex></th>
@@ -404,6 +450,138 @@ const TwoPhaseHorizontalSolution:React.FC<Props>  = ({inputData,onHighlightChang
                 </tbody>
             </table>
             
+            <h3 className="text-xl font-semibold mb-4 text-center">Step 6. P<sub>sat</sub> calculation</h3>
+            <div className="mb-8 p-4 bg-green-100 rounded-lg shadow-md max-w-full mx-auto">
+                <h3 className="text-xl font-semibold mb-4 text-center">Antoine's data for each component</h3>
+                <table className="min-w-full mb-4 bg-green-200 text-center border border-gray-300 rounded-lg overflow-hidden border-collapse">
+                    <thead>
+                        <tr>
+                            <th className="border border-gray-300 px-4 py-2"><Latex>{`$$Component$$`}</Latex></th>
+                            <th className="border border-gray-300 px-4 py-2"><Latex>{`$$A$$`}</Latex></th>
+                            <th className="border border-gray-300 px-4 py-2"><Latex>{`$$B$$`}</Latex></th>
+                            <th className="border border-gray-300 px-4 py-2"><Latex>{`$$C$$`}</Latex></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.entries(abcTableData).map(([key, values]) => (
+                            <tr key={key}>
+                                <td className="border border-gray-300 px-4 py-2">{key}</td>
+                                {values.map((value, index) => (
+                                    <td key={index} className="border border-gray-300 px-4 py-2">{value}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className="flex flex-col justify-center items-center">
+                    <div className='mb-8'>
+                        <Latex>{latex4_1}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_2}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex4_3}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_4}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex4_5}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_6}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex4_7}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_8}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex4_9}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_10}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex4_11}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex4_12}</Latex>
+                    </div>
+                    <div>
+                        <Latex>{latex4_13}</Latex>
+                    </div>
+                </div>
+            </div>
+            <h3 className="text-xl font-semibold mb-4 text-center">Step 7. K<sub>i</sub> calculation</h3>
+            <div className="mb-8 p-4 bg-green-100 rounded-lg shadow-md max-w-full mx-auto">
+                <div className="flex flex-col justify-center items-center">
+                <div className='mb-8'>
+                        <Latex>{latex5_1}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_2}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex5_3}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_4}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex5_5}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_6}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex5_7}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_8}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex5_9}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_10}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex5_11}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex5_12}</Latex>
+                    </div>
+                    <div>
+                        <Latex>{latex5_13}</Latex>
+                    </div>
+                </div>
+            </div>
+            <h3 className="text-xl font-semibold mb-4 text-center">Step 8. Gas, Oil calculation</h3>
+            <div className="p-4 bg-green-100 rounded-lg shadow-md max-w-full mx-auto">
+                <div className="flex flex-col justify-center items-center">
+                    <div className='mb-4'>
+                        <Latex>{latex6_1}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex6_2}</Latex>
+                    </div>
+                    <div className='mb-8'>
+                        <Latex>{latex6_3}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex6_4}</Latex>
+                    </div>
+                    <div className='mb-4'>
+                        <Latex>{latex6_5}</Latex>
+                    </div>
+                    <div>
+                        <Latex>{latex6_6}</Latex>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

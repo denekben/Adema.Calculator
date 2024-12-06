@@ -16,6 +16,12 @@ export type TwoPhaseInputs = {
     dm: number
     tr: number
     mu: number
+    C1: number
+    C2: number
+    C3: number
+    C4: number
+    H2S: number
+    CO2: number
 };
 
 export type DataForTwoPhaseCalculation = {
@@ -43,6 +49,12 @@ const TwoPhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selectedSe
         dm: Yup.number().required("Удаление капель обязательно"), 
         tr: Yup.number().required("Время удержания обязательно"), 
         mu: Yup.number().required("Gas visconsity обязательно"),
+        C1: Yup.number().required(),
+        C2: Yup.number().required(),
+        C3: Yup.number().required(),
+        C4: Yup.number().required(),
+        H2S: Yup.number().required(),
+        CO2: Yup.number().required()
     });
 
     const {register, handleSubmit ,formState : {errors}}=useForm<TwoPhaseInputs>({resolver: yupResolver(validationTwoPhase)});
@@ -124,6 +136,45 @@ const TwoPhaseHorizontalInputPlate:React.FC<Props> = ({onInputSubmit, selectedSe
                     {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
                 </div> 
             </div> 
+            <hr className="mb-6 mt-6 h-0.5 rounded-xl bg-gray-300"/>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+                <div>
+                    <label className="block text-sm font-medium">C1 (methane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C1")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">C2 (ethane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C2")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">C3 (propane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C3")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">C4+ (heavy hydrocarbons)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C4")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">H2S (hydrogen Sulfide)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("H2S")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">CO2 (carbon dioxide)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("CO2")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+            </div>
             <button 
                 type="submit"
                 className={`flex justify-center w-full mt-4 p-2 bg-amber-200 text-black rounded-md ${Object.keys(errors).length > 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-amber-400'}`}

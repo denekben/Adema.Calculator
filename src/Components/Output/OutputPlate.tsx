@@ -112,7 +112,32 @@ const OutputPlate: React.FC<Props> = ({highlightedRows, selectedSeparator}) => {
                     </>
                 </>
             ) : (
-                <p className="text-center text-red-500">No valid answers.</p>
+                <p className="text-center text-red-500">No valid answers for d.</p>
+            )}
+            <hr className="mb-6 mt-6 h-0.5 rounded-xl bg-gray-300"/>
+            {(selectedSeparator == "Two-phase vertical separator" || selectedSeparator == "Two-phase horizontal separator") ? (
+                <div className="flex flex-col justify-center items-center">
+                    <div className="mb-4">
+                        <Latex>{`$$Gas=0.121$$`}</Latex>
+                    </div>
+                    <div className="">
+                        <Latex>{`$$Oil=0.879$$`}</Latex>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <div className="flex flex-col justify-center items-center">
+                        <div className="mb-4">
+                            <Latex>{`$$Gas=0.121$$`}</Latex>
+                        </div>
+                        <div className="mb-4">
+                            <Latex>{`$$Water=0.5$$`}</Latex>
+                        </div>
+                        <div className="">
+                            <Latex>{`$$Oil=0.379$$`}</Latex>
+                        </div>
+                    </div>
+                </>
             )}
         </div>
     );

@@ -21,6 +21,13 @@ const validationThreePhase = Yup.object().shape({
     tro: Yup.number().required("Время удержания нефти обязательно"), // время удержания нефти
     trw: Yup.number().required("Время удержания воды обязательно"), // время удержания воды
     mu: Yup.number().required("Вязкость газа обязательна"), // вязкость газа
+    C1: Yup.number().required(),
+    C2: Yup.number().required(),
+    C3: Yup.number().required(),
+    H2S: Yup.number().required(),
+    CO2: Yup.number().required(),
+    Oil: Yup.number().required(),
+    H2O: Yup.number().required(),
 });
 
 export type ThreePhaseVerticalInputs = {
@@ -40,6 +47,13 @@ export type ThreePhaseVerticalInputs = {
     tro: number
     trw: number
     mu: number 
+    C1: number
+    C2: number
+    C3: number
+    H2S: number
+    CO2: number
+    Oil: number
+    H2O: number
 }
 
 export type DataForThreePhaseVerticalCalculation = {
@@ -158,18 +172,57 @@ const ThreePhaseVerticalInputPlate:React.FC<Props> = ({onInputSubmit, selectedSe
                     {...register("trw")}/>
                     {errors.trw ? <p className="text-red-500 text-xs">{errors.trw.message}</p> : ""}
                 </div>
-                <>
-                    {true ? (
-                        <div>
-                            <label className="block text-sm font-medium">µ<sub>g</sub> (gas viscosity, <span className="text-amber-800">cp</span>)</label>
-                            <input type="number"  step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                            {...register("mu")}/>
-                            {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
-                        </div> 
-                    ) : (
-                        null
-                    )}
-                </>
+                <div>
+                    <label className="block text-sm font-medium">µ<sub>g</sub> (gas viscosity, <span className="text-amber-800">cp</span>)</label>
+                    <input type="number"  step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("mu")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+            </div>
+            <hr className="mb-6 mt-6 h-0.5 rounded-xl bg-gray-300"/>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+                <div>
+                    <label className="block text-sm font-medium">C1 (methane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C1")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">C2 (ethane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C2")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">C3 (propane)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("C3")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">H2S (hydrogen Sulfide)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("H2S")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">CO2 (carbon dioxide)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("CO2")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">Oil</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("Oil")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
+                <div>
+                    <label className="block text-sm font-medium">H2O (water)</label>
+                    <input type="number" step="0.001" className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                    {...register("H2O")}/>
+                    {errors.mu ? <p className="text-red-500 text-xs">{errors.mu.message}</p> : ""}
+                </div> 
             </div>
             <button 
                 type="submit"

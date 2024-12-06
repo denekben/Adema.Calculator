@@ -98,6 +98,21 @@ export class ZFactorCalculator {
 }
 
 export class Calculation {
+    static Ki = (n: number, P:number) : number | null => {
+        const res = n / P;
+        return isNaN(res) ? null : Number(res.toFixed(6));
+    }
+
+    static Psat = (ABC: number[], T: number) : number | null => {
+        const res = 10 ** (ABC[0] - ABC[1]/(ABC[2]+T));
+        return isNaN(res) ? null : Number(res.toFixed(6));
+    }
+
+    static RtoC = (Ra: number) : number | null => {
+        const res = ((Ra-459.67) - 32) * 5 / 9;
+        return isNaN(res) ? null : Number(res.toFixed(6));
+    }
+
     static pl = (SG: number) : number | null => {
         const res = 62.4*SG;
         return isNaN(res) ? null : Number(res.toFixed(6));
